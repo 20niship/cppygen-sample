@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/nishimiya/Desktop/cppygen-sample/build",
+  "command": "/usr/bin/clang++-17 -Dpyshell_EXPORTS -I/home/nishimiya/Desktop/cppygen-sample/shell -I/home/nishimiya/Desktop/cppygen-sample/build -isystem /usr/include/python3.8 -flto=thin -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -fPIC -std=c++20 -Wall -Wextra -o CMakeFiles/pyshell.dir/src/main.cpp.o -c /home/nishimiya/Desktop/cppygen-sample/src/main.cpp",
+  "file": "/home/nishimiya/Desktop/cppygen-sample/src/main.cpp",
+  "output": "CMakeFiles/pyshell.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/nishimiya/Desktop/cppygen-sample/build",
+  "command": "/usr/bin/clang++-17 -Dpyshell_EXPORTS -I/home/nishimiya/Desktop/cppygen-sample/shell -I/home/nishimiya/Desktop/cppygen-sample/build -isystem /usr/include/python3.8 -flto=thin -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -fPIC -std=c++20 -Wall -Wextra -o CMakeFiles/pyshell.dir/cppygen_generated.cpp.o -c /home/nishimiya/Desktop/cppygen-sample/build/cppygen_generated.cpp",
+  "file": "/home/nishimiya/Desktop/cppygen-sample/build/cppygen_generated.cpp",
+  "output": "CMakeFiles/pyshell.dir/cppygen_generated.cpp.o"
+}
+]

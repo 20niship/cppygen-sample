@@ -1,0 +1,3 @@
+[submodule "cppygen"]
+	path = cppygen
+	url = git@github.com:20niship/cppygen.git

@@ -1,3 +1,0 @@
-/home/nishimiya/Desktop/cppygen-sample/build/CMakeFiles/pyshell.dir
-/home/nishimiya/Desktop/cppygen-sample/build/CMakeFiles/edit_cache.dir
-/home/nishimiya/Desktop/cppygen-sample/build/CMakeFiles/rebuild_cache.dir

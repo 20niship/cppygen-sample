@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(pyshell LANGUAGES CXX)
+project(${PROJECT_NAME} LANGUAGES CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 
@@ -18,26 +18,26 @@ set(cppygen_generated_cpp ${CMAKE_CURRENT_BINARY_DIR}/cppygen_generated.cpp)
 set(cppygen_config_file ${CMAKE_CURRENT_LIST_DIR}/cppygenconfig.toml)
 
 # find_program(_CPPYGEN_GENERATOR cppygen)
-set(_CPPYGEN_GENERATOR python3 ${CMAKE_CURRENT_SOURCE_DIR}/cppygen/cppygen/__main__.py)
+set(_CPPYGEN_GENERATOR python3 -m cppygen)
 message(${cppygen_config_file})
 
-pybind11_add_module(pyshell MODULE ${MAIN_SOURCES} ${SHELL_SOURCES}
+pybind11_add_module(${PROJECT_NAME} MODULE ${MAIN_SOURCES} ${SHELL_SOURCES}
                     ${cppygen_generated_cpp})
 
 target_link_libraries(
-  pyshell
+  ${PROJECT_NAME}
   PUBLIC #
          pybind11::module #
          pybind11::lto #
          pybind11::windows_extras #
          ${MAIN_LINK_LIBRARIES})
-target_include_directories(pyshell PRIVATE ${CMAKE_CURRENT_LIST_DIR}/shell
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/lib
                                            ${CMAKE_CURRENT_BINARY_DIR})
 
-# pybind11_extension(pyshell) pybind11_strip(pyshell)
+# pybind11_extension(${PROJECT_NAME}) pybind11_strip(${PROJECT_NAME})
 
 set_target_properties(
-  pyshell
+  ${PROJECT_NAME}
   PROPERTIES #
              INTERPROCEDURAL_OPTIMIZATION ON
              CXX_VISIBILITY_PRESET "hidden"
@@ -49,10 +49,10 @@ add_custom_command(
     ${_CPPYGEN_GENERATOR} ARGS #
     --config_file ${cppygen_config_file} #
     --cwd ${CMAKE_CURRENT_LIST_DIR} #
-    --include_directories $<TARGET_PROPERTY:pyshell,INCLUDE_DIRECTORIES> #
+    --include_directories $<TARGET_PROPERTY:${PROJECT_NAME},INCLUDE_DIRECTORIES> #
     --verbose
   DEPENDS ${SHELL_SOURCES} ${cppygen_config_file}
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cppygen/cppygen
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cppygen
   COMMENT
     "Generating CPPyGen Code To ${cppygen_generated_hpp} and ${cppygen_generated_cpp}"
   VERBATIM)

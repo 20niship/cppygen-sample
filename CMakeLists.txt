@@ -8,6 +8,7 @@ add_compile_options(-fPIC -std=c++20 -Wall -Wextra)
 
 file(GLOB MAIN_SOURCES src/main.cpp)
 file(GLOB SHELL_SOURCES lib/*.cpp)
+file(GLOB SHELL_HEADERS lib/*.hpp)
 
 find_package(Python COMPONENTS Interpreter Development)
 find_package(pybind11 CONFIG)
@@ -51,7 +52,7 @@ add_custom_command(
     --cwd ${CMAKE_CURRENT_LIST_DIR} #
     --include_directories $<TARGET_PROPERTY:${PROJECT_NAME},INCLUDE_DIRECTORIES> #
     --verbose
-  DEPENDS ${SHELL_SOURCES} ${cppygen_config_file}
+    DEPENDS ${SHELL_SOURCES} ${cppygen_config_file} ${SHELL_HEADERS}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cppygen
   COMMENT
     "Generating CPPyGen Code To ${cppygen_generated_hpp} and ${cppygen_generated_cpp}"

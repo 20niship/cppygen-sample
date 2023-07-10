@@ -23,3 +23,5 @@ include_directories = [
 ]
 
 flags = ["-Wall"]
+
+ignore_child_namespace = true

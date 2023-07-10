@@ -2,6 +2,10 @@
 #include <vector>
 
 namespace Shell {
+struct TestStruct {
+  int a;
+};
+
 class Foo {
 public:
   Foo() = default; // pybind11 から見えるのは この default コンストラクターのみ
@@ -12,6 +16,7 @@ public:
   int a = 32;
   int b = 42;
 
+  void PrintTestStruct(const TestStruct &ts);
 private:
   int c = 88;
 };

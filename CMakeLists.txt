@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(${PROJECT_NAME} LANGUAGES CXX)
+project(pygentest LANGUAGES CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 
 add_compile_options(-fPIC -std=c++20 -Wall -Wextra)
 
-file(GLOB MAIN_SOURCES src/*.cpp)
-file(GLOB SHELL_SOURCES shell/*.cpp)
+file(GLOB MAIN_SOURCES src/main.cpp)
+file(GLOB SHELL_SOURCES lib/*.cpp)
 
 find_package(Python COMPONENTS Interpreter Development)
 find_package(pybind11 CONFIG)
@@ -18,7 +18,7 @@ set(cppygen_generated_cpp ${CMAKE_CURRENT_BINARY_DIR}/cppygen_generated.cpp)
 set(cppygen_config_file ${CMAKE_CURRENT_LIST_DIR}/cppygenconfig.toml)
 
 # find_program(_CPPYGEN_GENERATOR cppygen)
-set(_CPPYGEN_GENERATOR python3.11 -m cppygen)
+set(_CPPYGEN_GENERATOR python3 -m cppygen)
 message(${cppygen_config_file})
 
 pybind11_add_module(${PROJECT_NAME} MODULE ${MAIN_SOURCES} ${SHELL_SOURCES}

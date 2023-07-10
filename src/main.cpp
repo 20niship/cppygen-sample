@@ -5,4 +5,4 @@
 
 #include "cppygen_generated.hpp"
 
-PYBIND11_MODULE(pyshell, m) { CPPyGen::CPPyGenExport(m); }
+PYBIND11_MODULE(pygentest, m) { CPPyGen::CPPyGenExport(m); }

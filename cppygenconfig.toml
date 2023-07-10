@@ -1,10 +1,11 @@
 search_namespace = "Shell" # default: pygen
+libclang_path="/usr/lib/llvm-17/lib/libclang.so.1"
 
 # 関数の定義が書かれた Shell namespace を持つ source の一覧: 重複は解決しない
-sources = ["shell/*.cpp"]
+sources = ["lib/*.cpp"]
 
 # class の定義が書かれた Shell namespace を持つ header の一覧: 重複は解決しない
-headers = ["shell/*.hpp"]
+headers = ["lib/*.hpp"]
 
 # class 定義が書かれた header のシンボルの解決のために書くべきinclude のヘッダー一覧
 include_headers = ["hoge.hpp", "piyo.hpp"]
@@ -13,6 +14,12 @@ include_headers = ["hoge.hpp", "piyo.hpp"]
 output_dir = "build"
 
 # ここでは shell 以下のヘッダーを source で include しているためそのことを宣言してあげる必要がある。
-include_directories = ["shell"]
+include_directories = [
+  "../../../src/logging/spdlog/include",
+  "../../../src/task/taskflow",
+  "../../../src/asset/entt/single_include",
+  "/usr/lib/llvm-17/lib/clang/17/include/",
+  "/usr/include/linux/stddef.h",
+]
 
 flags = ["-Wall"]
